@@ -2,7 +2,10 @@
 
 Simple wrapper for common gulp tasks with a very easy-to-use api
 
-It is a very simple wrapper around gulp tasks to get rid of all of that piping bloat. I aimed to include at least all of the common tasks that I use.
+[![Build Status](https://travis-ci.org/jonathonwang/gulp-tasks-scaffold.svg?branch=master)](https://travis-ci.org/jonathonwang/gulp-tasks-scaffold)
+[![npm version](https://badge.fury.io/js/gulp-tasks-scaffold.svg)](https://badge.fury.io/js/gulp-tasks-scaffold)
+
+This is a very simple wrapper around gulp tasks to get rid of all of that piping bloat. I aimed to include at least all of the common tasks that I use.
 
 Example repo using this package: __[gulp-starter](https://github.com/jonathonwang/gulp-starter)__
 
