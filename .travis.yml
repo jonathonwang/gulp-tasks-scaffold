@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "6.5.0"
+branches:
+  only:
+    - master
+    - dev
+before_script:
+  - npm install -g gulp
+  - gulp
+  - gulp --production
+  - npm install -g npm-check
+script: npm-check --skip-unused
+notifications:
+  email: false
