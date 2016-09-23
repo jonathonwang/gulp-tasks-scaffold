@@ -8,9 +8,11 @@ Simple wrapper for common gulp tasks with a very easy-to-use api
 
 This is a very simple wrapper around gulp tasks to get rid of all of that piping bloat. I aimed to include at least all of the common tasks that I use.
 
+Official Repo for this Package: __[gulp-tasks-scaffold](https://github.com/jonathonwang/gulp-tasks-scaffold)__
+
 Example repo using this package: __[gulp-starter](https://github.com/jonathonwang/gulp-starter)__
 
-I may create official documentation pages for this as well as it will easily get too large for a readme.
+I may create official documentation pages for this as well as it will probably get too large for a readme.
 
 ## Getting Started
 __Install__
@@ -301,4 +303,4 @@ gulp.Watch(
 ---
 #### More to come...
 
-The documentation tends to fall behind what has actually been  implemented. If you want to see what other tasks this comes with, checkout the __[gulp-starter](https://github.com/jonathonwang/gulp-starter)__ repo.
+The documentation tends to fall behind what has actually been  implemented. If you want to see what other tasks this comes with, checkout the __[gulp-starter](https://github.com/jonathonwang/gulp-tasks-scaffold)__ repo and take a look at the source files, I usually try to include decent docblocks.
