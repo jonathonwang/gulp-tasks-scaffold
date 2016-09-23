@@ -1,6 +1,6 @@
 # gulp-tasks-scaffold (WIP)
 
-A package to get started with gulp really quickly because I dont like having to setup all the piping all the time.
+Simple wrapper for common gulp tasks with a very easy-to-use api
 
 It is a very simple wrapper around gulp tasks to get rid of all of that piping bloat. I aimed to include at least all of the common tasks that I use.
 
@@ -21,6 +21,8 @@ This package comes with a ton of npm dependencies which can be used by importing
 Ex:
 ```javascript
 import gulp from 'gulp-tasks-scaffold';
+// Or
+var gulp = require('gulp-tasks-scaffold');
 ```
 You will then have access to all of the gulp tasks by accessing the imported gulp object: `gulp.Whatevertask`
 
