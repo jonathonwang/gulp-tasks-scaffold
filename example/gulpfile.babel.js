@@ -2,7 +2,7 @@
 /**
  * Dependency Imports
  */
-import gulp   from 'gulp-tasks';
+import gulp   from 'gulp-tasks-scaffold';
 import config from './gulp.config.json';
 
 // Copy Folders / Files
