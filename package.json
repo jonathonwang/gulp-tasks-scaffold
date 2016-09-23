@@ -51,6 +51,7 @@
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.9",
+    "reactify": "^1.1.1",
     "sass-module-importer": "^1.2.1",
     "stream-combiner2": "^1.1.1",
     "tsify": "^1.0.7",
