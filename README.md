@@ -10,6 +10,8 @@ This is a very simple wrapper around gulp tasks to get rid of all of that piping
 
 Example repo using this package: __[gulp-starter](https://github.com/jonathonwang/gulp-starter)__
 
+I may create official documentation pages for this as well as it will easily get too large for a readme.
+
 ## Getting Started
 __Install__
 
