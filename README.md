@@ -38,6 +38,14 @@ You will then have access to all of the gulp tasks by accessing the imported gul
 * __[Copy](#copy-task)__
 * __[Html](#html-task)__
 * __[Sass](#sass-task)__
+* __[Concat](#concat-task)__
+* __[Browserify](#browserify-task)__
+* __[Scsslint](#scsslint-task)__
+* __[Eslint](#eslint-task)__
+* __[Tslint](#tslint-task)__
+* __[Clean](#clean-task)__
+* __[Default](#default-task)__
+* __[Watch](#watch-task)__
 
 ---
 
@@ -106,7 +114,7 @@ Run gulp `taskName` --production to change the links to use `app.min.css` for CS
 
 ### Sass Task:
 
-Compiles SASS and minifies SASS with --production flag
+Compiles SASS with sourcemaps and minifies SASS with --production flag
 ```javascript
 gulp.Sass(
   'sass', // taskName
@@ -129,6 +137,168 @@ This will create `.min.css` extension on the output CSS file.
 
 ---
 
+### Concat Task:
+
+Concatenates either JS or CSS files and minifies with --production flag
+```javascript
+gulp.Concat(
+  'scripts', // taskName
+  'src/js/*.js'// srcPath
+  'dist/js/'// outputPath
+  'scripts.js'// outputFileName
+);
+```
+
+Parameters:
+* taskName: string
+* srcPath: string
+* outputPath: string
+* outputFileName: string
+
+---
+
+### Browserify Task:
+
+Browserify JS files with sourcemaps and minifies JS with --production flag
+```javascript
+gulp.Browserify(
+  'browserify', // taskName
+  'src/js/*.js', // srcPath
+  'dist/js/', // outputPath
+  'app.js', // outputFileName
+  ['babelify', 'vueify'] // browserifyPlugins
+);
+```
+
+Parameters:
+* taskName: string
+* srcPath: string
+* outputPath: string
+* outputFileName: string
+* browserifyPlugins: Array of strings
+
+---
+
+### Scsslint Task:
+
+Lints JS files with .eslintrc rules
+```javascript
+gulp.Scsslint(
+  'scsslint', // taskName
+  `src/scss/**/*.scss`, // scssPath
+  `src/scss/vendor/**`, // ignorePath
+  '.scss-lint.yml' // linterFilePath
+);
+```
+
+Parameters:
+* taskName: string
+* scssPath: string
+* ignorePath: string
+* linterFilePath: string
+
+---
+
+### Eslint Task:
+
+Lints JS files with .eslintrc rules
+```javascript
+gulp.Eslint(
+  'eslint', // taskName
+  `src/js/**/*.{js,vue}`, // jsPath
+  `src/js/vendor/**`, // ignorePath
+  '.eslintrc' // linterFilePath
+);
+```
+
+Parameters:
+* taskName: string
+* jsPath: string
+* ignorePath: string
+* linterFilePath: string
+
+---
+
+### Tslint Task:
+
+Lints JS files with tslint rules
+```javascript
+gulp.Tslint(
+  'tslint', // taskName
+  `src/ts/**/*.ts`, // tsPath
+  `src/ts/vendor/**`, // ignorePath
+  '.tslintrc' // linterFilePath
+);
+```
+
+Parameters:
+* taskName: string
+* tsPath: string
+* ignorePath: string
+* linterFilePath: string
+
+---
+
+### Clean Task:
+
+Deletes files or directories
+```javascript
+gulp.Clean(
+  [ // files
+    'dist/js/*',
+    'dist/css/*',
+    'src/scss/vendor/*',
+    'src/js/vendor/*',
+  ]
+);
+```
+
+Parameters:
+* files: Array of strings
+
+---
+
+### Default Task:
+
+Tasks that are run by default when running `gulp`
+```javascript
+gulp.Default(
+  [ // tasks
+    'copy',
+    'scsslint',
+    'sass',
+    'eslint',
+    'browserify',
+    'html'
+  ]
+);
+```
+
+---
+
+### Watch Task:
+```javascript
+gulp.Watch(
+  [ // tasksToRunBeforeWatch
+    'scsslint', // taskName
+    'sass',
+    'eslint',
+    'browserify',
+  ],
+  [ // tasksToWatch
+    {
+      path: 'src/js/**/*.{js,vue}', // pathToWatchForChanges
+      tasks: ['eslint', 'browserify']  // tasksToRunOnChange
+    },
+    {
+      path: 'src/sass/**/*.scss', // pathToWatchForChanges
+      tasks: ['scsslint', 'sass'] // tasksToRunOnChange
+    },
+  ]
+);
+```
+
+---
 #### More to come...
 
 The documentation tends to fall behind what has actually been  implemented. If you want to see what other tasks this comes with, checkout the __[gulp-starter](https://github.com/jonathonwang/gulp-starter)__ repo.
