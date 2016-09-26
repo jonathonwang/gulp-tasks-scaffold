@@ -187,8 +187,8 @@ Lints JS files with .eslintrc rules
 ```javascript
 gulp.Scsslint(
   'scsslint', // taskName
-  `src/scss/**/*.scss`, // scssPath
-  `src/scss/vendor/**`, // ignorePath
+  'src/scss/**/*.scss', // scssPath
+  'src/scss/vendor/**', // ignorePath
   '.scss-lint.yml' // linterFilePath
 );
 ```
@@ -207,8 +207,8 @@ Lints JS files with .eslintrc rules
 ```javascript
 gulp.Eslint(
   'eslint', // taskName
-  `src/js/**/*.{js,vue}`, // jsPath
-  `src/js/vendor/**`, // ignorePath
+  'src/js/**/*.{js,vue}', // jsPath
+  'src/js/vendor/**', // ignorePath
   '.eslintrc' // linterFilePath
 );
 ```
@@ -227,8 +227,8 @@ Lints JS files with tslint rules
 ```javascript
 gulp.Tslint(
   'tslint', // taskName
-  `src/ts/**/*.ts`, // tsPath
-  `src/ts/vendor/**`, // ignorePath
+  'src/ts/**/*.ts', // tsPath
+  'src/ts/vendor/**', // ignorePath
   '.tslintrc' // linterFilePath
 );
 ```
