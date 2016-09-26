@@ -9,7 +9,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "jonathonwang",
+  "repository" :
+  {
+    "type" : "git",
+    "url" : "https://github.com/jonathonwang/gulp-tasks-scaffold"
+  },
   "license": "ISC",
   "devDependencies": {},
   "dependencies": {
