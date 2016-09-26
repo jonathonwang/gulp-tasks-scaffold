@@ -246,6 +246,7 @@ Parameters:
 Deletes files or directories
 ```javascript
 gulp.Clean(
+  'clean', // taskName
   [ // files
     'dist/js/*',
     'dist/css/*',
@@ -256,6 +257,7 @@ gulp.Clean(
 ```
 
 Parameters:
+* taskName: string
 * files: Array of strings
 
 ---
