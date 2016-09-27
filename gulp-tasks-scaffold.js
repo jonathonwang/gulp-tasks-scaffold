@@ -277,6 +277,7 @@ module.exports = {
       gulp.src([src, `!${exclude}`])
       .pipe(tslint({ configuration: configSrc, formatter: 'verbose' }))
       .pipe(tslint.report())
+      .on('error', error => gutil.log(error.message))
       .pipe(gutil.env.type === 'ci' ? gutil.noop() : notify({
         title: config.name,
         subtitle: `Finished ${taskName}`,
