@@ -1,6 +1,6 @@
 {
   "name": "gulp-tasks-scaffold",
-  "version": "1.2.23",
+  "version": "1.2.24",
   "description": "",
   "engines": {
     "node": ">=6.5.0"
