@@ -231,7 +231,7 @@ gulp.Tslint(
   'tslint', // taskName
   'src/ts/**/*.ts', // tsPath
   'src/ts/vendor/**', // ignorePath
-  '.tslintrc' // linterFilePath
+  'tslint.json' // linterFilePath
 );
 ```
 

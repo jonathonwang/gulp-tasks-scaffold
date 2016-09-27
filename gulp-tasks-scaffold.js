@@ -275,8 +275,8 @@ module.exports = {
   Tslint(taskName, src, exclude, configSrc) {
     gulp.task(taskName, () => {
       gulp.src([src, `!${exclude}`])
-      .pipe(tslint({ configuration: configSrc }))
-      .pipe(tslint.report('verbose'))
+      .pipe(tslint({ configuration: configSrc, formatter: 'verbose' }))
+      .pipe(tslint.report())
       .pipe(gutil.env.type === 'ci' ? gutil.noop() : notify({
         title: config.name,
         subtitle: `Finished ${taskName}`,
