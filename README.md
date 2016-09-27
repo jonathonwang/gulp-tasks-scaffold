@@ -168,7 +168,8 @@ gulp.Browserify(
   'src/js/*.js', // srcPath
   'dist/js/', // outputPath
   'app.js', // outputFileName
-  ['babelify', 'vueify'] // browserifyPlugins
+  ['babelify', 'vueify'] // browserifyTransforms
+  ['tsify'] // browserifyPlugins
 );
 ```
 
@@ -177,6 +178,7 @@ Parameters:
 * srcPath: string
 * outputPath: string
 * outputFileName: string
+* browserifyTransforms: Array of strings
 * browserifyPlugins: Array of strings
 
 ---

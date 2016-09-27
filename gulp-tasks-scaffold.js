@@ -2,45 +2,37 @@
  * NPM Dependencies
  */
 const del = require('del');
-// Gulp
 const gulp = require('gulp');
-// Utilities
-const size = require('gulp-size');
-const gutil = require('gulp-util');
-const shell = require('gulp-shell');
-const watch = require('gulp-watch');
-const rename = require('gulp-rename');
-const notify = require('gulp-notify');
-const buffer = require('vinyl-buffer');
-const gulpfilter = require('gulp-filter');
-const combiner = require('stream-combiner2');
-const sourcemaps = require('gulp-sourcemaps');
-const source = require('vinyl-source-stream');
-const htmlreplace = require('gulp-html-replace');
-// JS
-const ts = require('gulp-typescript');
-// Browserify && Plugins
 const tsify = require('tsify');
 const vueify = require('vueify');
 const watchify = require('watchify');
-const reactify = require('reactify');
-const browserify = require('browserify');
-// CSS Compilers
 const sass = require('gulp-sass');
 const less = require('gulp-less');
+const size = require('gulp-size');
+const gutil = require('gulp-util');
+const browserify = require('browserify');
+const shell = require('gulp-shell');
+const watch = require('gulp-watch');
+const rename = require('gulp-rename');
 const concat = require('gulp-concat');
-const autoprefixer = require('gulp-autoprefixer');
-const moduleimporter = require('sass-module-importer');
-// Minifiers
+const gulpfilter = require('gulp-filter');
 const uglify = require('gulp-uglify');
-const htmlmin = require('gulp-htmlmin');
-const cleancss = require('gulp-clean-css');
-// Linters
+const notify = require('gulp-notify');
 const tslint = require('gulp-tslint');
 const eslint = require('gulp-eslint');
+const htmlmin = require('gulp-htmlmin');
+const browserSync = require('browser-sync');
+const buffer = require('vinyl-buffer');
+const cleancss = require('gulp-clean-css');
 const scsslint = require('gulp-scss-lint');
 const sasslint = require('gulp-sass-lint');
-const browserSync = require('browser-sync');
+const sourcemaps = require('gulp-sourcemaps');
+const ts = require('gulp-typescript');
+const combiner = require('stream-combiner2');
+const autoprefixer = require('gulp-autoprefixer');
+const htmlreplace = require('gulp-html-replace');
+const source = require('vinyl-source-stream');
+const moduleimporter = require('sass-module-importer');
 
 /**
  * Gulp Configuration
@@ -172,17 +164,31 @@ module.exports = {
    * @param outputFileName: string
    * @param plugins       : Array<string> | string
    */
-  Browserify(taskName, src, dest, outputFileName, plugins) {
+  Browserify(taskName, src, dest, outputFileName, transforms, plugins) {
     gulp.task(taskName, () => {
-      const bundler = browserify({ debug: true, entries: src });
+      const bundler = browserify({
+        debug: true,
+        entries: src,
+        extensions: ['.js', '.json', '.ts', '.jsx', '.tsx', '.vue']
+      });
       if (plugins !== undefined) {
         if (typeof plugins === 'object') {
           for (const plugin of plugins) {
-            bundler.transform(plugin);
+            bundler.plugin(plugin);
           }
         }
         if (typeof plugins === 'string') {
-          bundler.transform(plugins);
+          bundler.plugin(plugins);
+        }
+      }
+      if (plugins !== undefined) {
+        if (typeof transforms === 'object') {
+          for (const transformItem of transforms) {
+            bundler.transform(transformItem);
+          }
+        }
+        if (typeof plugins === 'string') {
+          bundler.transform(transforms);
         }
       }
       bundler.bundle()
