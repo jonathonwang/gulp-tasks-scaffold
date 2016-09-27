@@ -165,7 +165,7 @@ Browserify JS files with sourcemaps and minifies JS with --production flag
 ```javascript
 gulp.Browserify(
   'browserify', // taskName
-  'src/js/*.js', // srcPath
+  'src/js/scripts.js', // srcPath
   'dist/js/', // outputPath
   'app.js', // outputFileName
   ['babelify', 'vueify'] // browserifyTransforms
@@ -175,7 +175,7 @@ gulp.Browserify(
 
 Parameters:
 * taskName: string
-* srcPath: string
+* srcPath: string || Array<string>
 * outputPath: string
 * outputFileName: string
 * browserifyTransforms: Array of strings
