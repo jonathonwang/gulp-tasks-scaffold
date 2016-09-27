@@ -10,6 +10,7 @@ const sass = require('gulp-sass');
 const less = require('gulp-less');
 const size = require('gulp-size');
 const gutil = require('gulp-util');
+const babelify = require('babelify');
 const browserify = require('browserify');
 const shell = require('gulp-shell');
 const watch = require('gulp-watch');
@@ -33,7 +34,6 @@ const autoprefixer = require('gulp-autoprefixer');
 const htmlreplace = require('gulp-html-replace');
 const source = require('vinyl-source-stream');
 const moduleimporter = require('sass-module-importer');
-
 /**
  * Gulp Configuration
  */
@@ -181,10 +181,14 @@ module.exports = {
           bundler.plugin(plugins);
         }
       }
-      if (plugins !== undefined) {
+      if (transforms !== undefined) {
         if (typeof transforms === 'object') {
           for (const transformItem of transforms) {
-            bundler.transform(transformItem);
+            if (transformItem === 'babelify') {
+              bundler.transform('babelify', { presets: ['es2015'] });
+            } else {
+              bundler.transform(transformItem);
+            }
           }
         }
         if (typeof plugins === 'string') {
