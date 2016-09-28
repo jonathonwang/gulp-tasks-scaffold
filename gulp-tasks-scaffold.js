@@ -167,47 +167,41 @@ module.exports = {
   Browserify(taskName, src, dest, outputFileName, transforms, plugins) {
     gulp.task(taskName, () => {
       const bundler = browserify({
-        debug: true,
+        debug: false,
         entries: src,
         extensions: ['.js', '.json', '.ts', '.jsx', '.tsx', '.vue']
       });
       if (plugins !== undefined) {
-        if (typeof plugins === 'object') {
-          for (const plugin of plugins) {
+        for (const plugin of plugins) {
+          if (plugin === 'tsify') {
+            bundler.plugin('tsify', { target: 'es6' });
+          } else {
             bundler.plugin(plugin);
           }
         }
-        if (typeof plugins === 'string') {
-          bundler.plugin(plugins);
-        }
       }
       if (transforms !== undefined) {
-        if (typeof transforms === 'object') {
-          for (const transformItem of transforms) {
-            if (transformItem === 'babelify') {
-              bundler.transform('babelify', { presets: ['es2015'] });
-            } else {
-              bundler.transform(transformItem);
-            }
+        for (const transformer of transforms) {
+          if (transformer === 'babelify') {
+            bundler.transform('babelify', { presets: ['es2015'] });
+          } else {
+            bundler.transform(transformer);
           }
-        }
-        if (typeof plugins === 'string') {
-          bundler.transform(transforms);
         }
       }
       bundler.bundle()
       .on('error', gutil.log)
       .pipe(gutil.env.production ? source(`${dest}/${outputFileName.split('.js')[0]}.min.js`) : source(`${dest}/${outputFileName}`))
       .pipe(buffer())
-      .pipe(gutil.env.production ? uglify() : gutil.noop())
       .pipe(gutil.env.production ? gutil.noop() : sourcemaps.init())
       .pipe(gutil.env.production ? gutil.noop() : sourcemaps.write('./'))
+      .pipe(gutil.env.production ? uglify() : gutil.noop())
       .pipe(gulp.dest(''))
       .pipe(size({ title: 'JS:', showFiles: true, pretty: true }))
       .pipe(gutil.env.type === 'ci' ? gutil.noop() : notify({
         title: config.name,
         subtitle: `Finished ${taskName}`,
-        message: 'JS Compiled',
+        message: gutil.env.production ? 'JS Compiled and Minified' : 'JS Compiled',
         icon: config.icon,
         sound: false,
         onLast: true
