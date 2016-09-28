@@ -183,7 +183,10 @@ module.exports = {
       if (transforms !== undefined) {
         for (const transformer of transforms) {
           if (transformer === 'babelify') {
-            bundler.transform('babelify', { presets: ['es2015'] });
+            bundler.transform('babelify', {
+              presets: ['es2015'],
+              extensions: ['.js', '.json', '.ts', '.jsx', '.tsx', '.vue']
+            });
           } else {
             bundler.transform(transformer);
           }
